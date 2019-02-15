@@ -1,13 +1,13 @@
-<nav class="nav-bar">
+<nav id="nav-bar" class="nav-bar">
     <div class="logo">
         <a href="{{@blog.url}}" title="{{@blog.title}}">
-                <img alt="{{@blog.title}}" src="{{@blog.logo}}" />
-                </a>
+          <img alt="{{@blog.title}}" src="{{@blog.logo}}" />
+        </a>
     </div>
-  <div class="site-nav">
-  		<a href="javascript:void(0);" class="icon" onclick="myFunction()">
-  			<i class="fa fa-bars"></i>
-			</a>
+    <div id="site-nav" class='site-nav'>
+      <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+        <i class="fa fa-bars"></i>
+      </a>
       {{navigation}}
-  </div>
+    </div>
 </nav>

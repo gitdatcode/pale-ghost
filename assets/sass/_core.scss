@@ -1,79 +1,72 @@
 .title {
 	font-weight: 700;
 }
-.site-nav { 
+
+.nav-bar { 
 	overflow: hidden;
-	.nav {
-		list-style-type: none;
-		margin: 0 auto;
-		[class*='nav-'] {
-			a { 
-				text-decoration: none;
-				color: map-get($s5-map--color, dc-white);
-			 }
+	margin: 10px;
 
-			font-weight: 700;
-			float: left;
-			display: block;
-			text-align: center;
-			display: inline;
-			padding: 5px 10px;
-			text-decoration: none;
-			text-transform: uppercase;
-			border-radius: 2px;
-		}
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
 
-		.nav-sign-up {
-			background-color: map-get($s5-map--color, dc-purple);
-			a { color: map-get($s5-map--color, dc-black); }
-		}
+
+	.nav-sign-up {
+		background-color: map-get($s5-map--color, dc-purple);
+		a { color: map-get($s5-map--color, dc-black); }
 	}
+
+	.logo {		
+		padding: 0 16px;
+		img { max-width: 50px; }
+	}
+
+	.logo a { padding: 0; }
 
 	.icon {
 		display: none;
 	}
 }
 
+.site-nav {
+	a { 
+		text-decoration: none;
+		color: map-get($s5-map--color, dc-white);
 
-.nav-bar {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-
-	> * {
-		display: inline;
-		margin: 16px 0;
-		padding: 0 30px;
-
+		font-weight: 700;
+		display: inline-block;
+		text-align: center;
+		padding: 14px 16px;
+		text-transform: uppercase;
+		border-radius: 2px;
 	}
-	.logo img {	
-		max-width: 30px;
-	}
-
 }
 
 @media screen and (max-width: 600px) {
-		
-	.site-nav{
-		a:not(:first-child) {}
-		.icon {
-			float: right;
-			display: block;
-		}
-	}
+	.site-nav a { display: none; }
 
-	.responsive { position: relative; }
-	.responsive .icon {
+	.site-nav a.icon {
+		float: right;
+		display: block;
+	}
+	
+	.site-nav.responsive { position: relative; }
+	.site-nav.responsive a.icon {
 		position: absolute;
 		right: 0;
 		top: 0;
 	}
-	.responsive a {
+
+	.site-nav.responsive a {
 		float: none;
 		display: block;
-		text-align: left;
+		text-align: right;
 	}
 
+	.logo {
+		position: absolute;
+		left: 0;
+	}
 }
 
 footer.site-footer {
