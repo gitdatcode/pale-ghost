@@ -1,6 +1,6 @@
 {
-	"name": "pale-ghost",
-	"description": "A blank, dev ready, Ghost theme. :)",
+	"name": "spectre",
+	"description": "A theme for the DATCODE site. Built on the Pale Ghost theme.",
 	"version": "1.0.0",
 	"engines": {
 		"ghost": ">=1.2.0"
@@ -11,9 +11,9 @@
 		"mobile": "assets/screenshots/mobile.jpg"
 	},
 	"author": {
-		"name": "Nahuel Sanchez",
-		"email": "nahuel@nahuelsanchez.com",
-		"url": "https://www.nahuelsanchez.com/"
+		"name": "Jer'Maine Jones",
+		"email": "jermaine@datcode.io",
+		"url": "https://www.datcode.io/"
 	},
 	"gpm": {
 		"type": "theme",
@@ -32,11 +32,14 @@
 	],
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/nahuelsanchez/pale-ghost.git"
+		"url": "https://github.com/gitdatcode/spectre.git"
 	},
-	"bugs": "https://github.com/nahuelsanchez/pale-ghost/issues",
-	"contributors": "https://github.com/nahuelsanchez/pale-ghost/graphs/contributors",
+	"bugs": "https://github.com/gitdatcode/spectre/issues",
+	"contributors": "https://github.com/gitdatcode/spectre/graphs/contributors",
 	"config": {
 		"posts_per_page": 5
+	},
+	"dependencies": {
+		"normalize.css": "^8.0.1"
 	}
 }

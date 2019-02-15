@@ -1,0 +1,247 @@
+@font-face {
+  font-family: "Gilmer-Outline";
+  src: url("/assets/fonts/glimer-outline/gilmer-outline.eot");
+  src: url("/assets/fonts/glimer-outline/gilmer-outline.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/glimer-outline/gilmer-outline.woff2") format("woff2"), url("/assets/fonts/glimer-outline/gilmer-outline.woff") format("woff"), url("/assets/fonts/glimer-outline/gilmer-outline.ttf") format("truetype"), url("/assets/fonts/glimer-outline/gilmer-outline.svg") format("svg");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilmer";
+  src: url("/assets/fonts/glimer-light/gilmer-light.eot");
+  src: url("/assets/fonts/glimer-light/gilmer-light.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/glimer-light/gilmer-light.woff2") format("woff2"), url("/assets/fonts/glimer-light/gilmer-light.woff") format("woff"), url("/assets/fonts/glimer-light/gilmer-light.ttf") format("truetype"), url("/assets/fonts/glimer-light/gilmer-light.svg#youworkforthem") format("svg");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilmer";
+  src: url("/assets/fonts/glimer-regular/gilmer-regular.eot");
+  src: url("/assets/fonts/glimer-regular/gilmer-regular.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/glimer-regular/gilmer-regular.woff2") format("woff2"), url("/assets/fonts/glimer-regular/gilmer-regular.woff") format("woff"), url("/assets/fonts/glimer-regular/gilmer-regular.ttf") format("truetype"), url("/assets/fonts/glimer-regular/gilmer-regular.svg") format("svg");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilmer";
+  src: url("/assets/fonts/glimer-medium/gilmer-medium.eot");
+  src: url("/assets/fonts/glimer-medium/gilmer-medium.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/glimer-medium/gilmer-medium.woff2") format("woff2"), url("/assets/fonts/glimer-medium/gilmer-medium.woff") format("woff"), url("/assets/fonts/glimer-medium/gilmer-medium.ttf") format("truetype"), url("/assets/fonts/glimer-medium/gilmer-medium.svg") format("svg");
+  font-weight: 500;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilmer";
+  src: url("/assets/fonts/gilmer-bold/gilmer-bold.eot");
+  src: url("/assets/fonts/gilmer-bold/gilmer-bold.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/gilmer-bold/gilmer-bold.woff2") format("woff2"), url("/assets/fonts/gilmer-bold/gilmer-bold.woff") format("woff"), url("/assets/fonts/gilmer-bold/gilmer-bold.ttf") format("truetype"), url("/assets/fonts/gilmer-bold/gilmer-bold.svg") format("svg");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Gilmer";
+  src: url("/assets/fonts/glimer-heavy/gilmer-heavy.eot");
+  src: url("/assets/fonts/glimer-heavy/gilmer-heavy.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/glimer-heavy/gilmer-heavy.woff2") format("woff2"), url("/assets/fonts/glimer-heavy/gilmer-heavy.woff") format("woff"), url("/assets/fonts/glimer-heavy/gilmer-heavy.ttf") format("truetype"), url("/assets/fonts/glimer-heavy/gilmer-heavy.svg") format("svg");
+  font-weight: 800;
+  font-style: normal;
+}
+html {
+  box-sizing: border-box;
+  font-size: 100%;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+[disabled],
+[aria-disabled=true] {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  opacity: 0.5;
+  cursor: not-allowed;
+  text-decoration: none;
+  pointer-events: none;
+}
+
+[hidden] {
+  display: none;
+}
+
+[aria-hidden=true] {
+  visibility: hidden;
+}
+
+body {
+  color: #2f2c30;
+  margin: 0 auto;
+}
+body img {
+  max-width: 100%;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: 900px;
+  width: 100%;
+}
+.wrapper .header,
+.wrapper .main,
+.wrapper .footer {
+  margin: 15px;
+  padding: 15px;
+}
+@media (max-width: 768px) {
+  .wrapper .header,
+.wrapper .main,
+.wrapper .footer {
+    margin: 0;
+  }
+}
+.wrapper .main .post header,
+.wrapper .main .post section,
+.wrapper .main .post footer {
+  padding: 0;
+}
+.wrapper .main .post header > *,
+.wrapper .main .post section > *,
+.wrapper .main .post footer > * {
+  margin: 10px;
+}
+@media (max-width: 768px) {
+  .wrapper .main .post header > *,
+.wrapper .main .post section > *,
+.wrapper .main .post footer > * {
+    margin: 0;
+  }
+}
+.wrapper .main .post section {
+  margin: 30px;
+  padding: 15px;
+}
+.wrapper .main .post section > * {
+  margin: 0;
+  padding: 0;
+}
+@media (max-width: 768px) {
+  .wrapper .main .post section {
+    margin: 0;
+  }
+}
+
+.page-nav .nav {
+  list-style-type: none;
+  margin: 0 auto;
+}
+.page-nav .nav [class*=nav-] {
+  display: inline;
+  padding-left: 10px;
+  text-decoration: none;
+}
+.page-nav .nav [class*=nav-] a {
+  text-decoration: none;
+  color: #F4F4F4;
+}
+.page-nav .nav [class*=nav-]:hover {
+  background-color: #999999;
+}
+
+.nav-bar {
+  display: flex;
+  justify-content: space-between;
+}
+.nav-bar > * {
+  display: inline;
+  margin: 16px 0;
+  padding: 0 30px;
+}
+.nav-bar .logo img {
+  max-width: 30px;
+}
+
+.post-title {
+  margin: 10px 0;
+  text-transform: uppercase;
+}
+.post-title a {
+  color: #F4F4F4;
+  text-decoration: none;
+}
+
+.home-template .main > * {
+  border: 2px solid #F4F4F4;
+  margin: 5px;
+  padding: 20px;
+}
+
+.post-tags-all {
+  justify-content: right;
+  display: flex;
+  align-items: center;
+}
+.post-tags-all > * {
+  font-size: 0.75em;
+  color: #F4F4F4;
+  display: inline;
+  text-transform: uppercase;
+  padding: 5px;
+  text-decoration: none;
+  border: 2px solid #FFD703;
+}
+
+footer {
+  display: flex;
+  justify-content: space-between;
+}
+footer > * {
+  display: inline;
+}
+
+.authors-list {
+  list-style-type: none;
+  padding: 0;
+}
+.authors-list .authors-list-item {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+.authors-list .authors-list-item > * {
+  padding: 5px;
+  display: inline;
+}
+.authors-list .authors-list-item a {
+  text-decoration: none;
+  color: #F4F4F4;
+}
+
+.post-details {
+  display: flex;
+}
+.post-details > * {
+  display: inline;
+  padding: 5px;
+}
+
+.author-image {
+  height: auto;
+  width: auto;
+}
+.author-image img {
+  object-fit: cover;
+  border-radius: 50%;
+  max-width: 2em;
+}
+
+body {
+  background-color: #000000;
+  color: #F4F4F4;
+  font-family: "Gilmer", BlinkMacSystemFont, -apple-system, "Roboto", "Droid Sans", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+h1, h2 {
+  font-family: "Gilmer-Outline", BlinkMacSystemFont, -apple-system, "Roboto", "Droid Sans", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+/*# sourceMappingURL=spectre.css.map */

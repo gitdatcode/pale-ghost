@@ -1,14 +1,12 @@
 <article class="post-single {{post_class}}{{#if feature_image}} with-feature-image{{/if}}">
-    <header>
+    <header class="post-header">
         {{> post/title}}
 
         {{> post/feature-image}}
-
-        {{> post/tags-primary}}
-
+        <div class="post-details">        
         {{> post/date}}
-
         {{> post/reading-time}}
+        </div>
     </header>
 
     <section>
@@ -20,8 +18,7 @@
     </section>
 
     <footer>
-        {{> post/tags-all}}
-
         {{> post/authors}}
+        {{> post/tags-all}}
     </footer>
 </article>
