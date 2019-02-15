@@ -15,8 +15,7 @@ body {
     width: 100%;
 
     .header,
-    .main,
-    .footer {
+    .main {
         margin: 15px;
         padding: 15px;
 
@@ -28,6 +27,7 @@ body {
 
         @media (max-width: 768px) {
             margin: 0;
+            padding: 0;
         }
     }
     .main {
@@ -48,8 +48,7 @@ body {
             }
 
             section {
-                margin: 30px;
-                padding: 15px;
+                margin: 10px;
 
                 > * {
                     margin: 0;
