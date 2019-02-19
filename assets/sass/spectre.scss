@@ -1,15 +1,7 @@
 @import 'bitstream/bitstream';
 @import "beautify";
 
+@import "global";
 @import "core";
 @import "list";
 @import "post";
-
-body {
-	background-color: map-get($bitstream-colors, dc-black);
-	color: map-get($bitstream-colors, dc-white);
-
-	font-family: $s5_fontstack--masthead;
-}
-
-h1, h2 { font-family: $s5_fontstack--display; }

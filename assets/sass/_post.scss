@@ -1,7 +1,11 @@
 .post-template {
 	section {
 		h1, h2, h3, h4, h5, h6 {
-			font-weight: bold;
+			font-weight: 700;
 		}
+	}
+
+	.post-header {
+		margin: 0 0 1.5em;
 	}
 }

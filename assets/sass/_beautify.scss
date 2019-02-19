@@ -6,7 +6,6 @@ body {
     img {
         max-width: 100%;
     }
-
 }
 
 .wrapper {
@@ -14,51 +13,30 @@ body {
     max-width: 900px;
     width: 100%;
 
-    .header,
-    .main {
-        margin: 15px;
-        padding: 15px;
+    // .header,
+    // .main {
+    //     margin: 15px;
+    //     padding: 15px;
 
-        // > * {
-        //     border: 5px dashed #bac0ce;
-        //     margin: 25px;
-        //     padding: 25px;
-        // }
+    //     // > * {
+    //     //     border: 5px dashed #bac0ce;
+    //     //     margin: 25px;
+    //     //     padding: 25px;
+    //     // }
 
-        @media (max-width: 768px) {
-            margin: 0;
-            padding: 0;
-        }
-    }
-    .main {
-        .post {
-            header,
-            section,
-            footer {
-                padding: 0;
+    //     @media (max-width: 768px) {
+    //         margin: 0;
+    //         padding: 0;
+    //     }
+    // }
+    // .main {
+    //     .post {
+    //         header,
+    //         section,
+    //         footer {
+    //             padding: 0;
 
-                > * {
-                    margin: 10px;
-                    // padding: 15px;
-
-                    @media (max-width: 768px) {
-                        margin: 0;
-                    }
-                }
-            }
-
-            section {
-                margin: 10px;
-
-                > * {
-                    margin: 0;
-                    padding: 0;
-                }
-
-                @media (max-width: 768px) {
-                    margin: 0;
-                }
-            }
-        }
-    }
+    //         }
+    //     }
+    // }
 }

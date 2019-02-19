@@ -86,46 +86,28 @@ body img {
   max-width: 900px;
   width: 100%;
 }
-.wrapper .header,
-.wrapper .main {
-  margin: 15px;
-  padding: 15px;
+
+html {
+  overflow-x: hidden;
+  overflow-y: scroll;
+  font-size: 62.5%;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
 }
-@media (max-width: 768px) {
-  .wrapper .header,
-.wrapper .main {
-    margin: 0;
-    padding: 0;
-  }
-}
-.wrapper .main .post header,
-.wrapper .main .post section,
-.wrapper .main .post footer {
-  padding: 0;
-}
-.wrapper .main .post header > *,
-.wrapper .main .post section > *,
-.wrapper .main .post footer > * {
-  margin: 10px;
-}
-@media (max-width: 768px) {
-  .wrapper .main .post header > *,
-.wrapper .main .post section > *,
-.wrapper .main .post footer > * {
-    margin: 0;
-  }
-}
-.wrapper .main .post section {
-  margin: 10px;
-}
-.wrapper .main .post section > * {
-  margin: 0;
-  padding: 0;
-}
-@media (max-width: 768px) {
-  .wrapper .main .post section {
-    margin: 0;
-  }
+
+body {
+  background-color: #000000;
+  color: #F4F4F4;
+  font-family: "Gilmer", BlinkMacSystemFont, -apple-system, "Roboto", "Droid Sans", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  overflow-x: hidden;
+  font-size: 1.5rem;
+  line-height: 1.6em;
+  font-weight: 400;
+  font-style: normal;
+  letter-spacing: 0;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -moz-font-feature-settings: "liga" on;
 }
 
 .title {
@@ -162,7 +144,8 @@ body img {
   text-decoration: none;
   color: #F4F4F4;
   font-weight: 700;
-  display: inline-block;
+  display: flex;
+  align-content: space-between;
   text-align: center;
   padding: 14px 16px;
   text-transform: uppercase;
@@ -175,8 +158,8 @@ body img {
   }
 
   .site-nav a.icon {
-    float: right;
     display: block;
+    text-align: right;
   }
 
   .site-nav.responsive {
@@ -335,17 +318,10 @@ footer.site-footer {
 }
 
 .post-template section h1, .post-template section h2, .post-template section h3, .post-template section h4, .post-template section h5, .post-template section h6 {
-  font-weight: bold;
+  font-weight: 700;
 }
-
-body {
-  background-color: #000000;
-  color: #F4F4F4;
-  font-family: "Gilmer", BlinkMacSystemFont, -apple-system, "Roboto", "Droid Sans", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
-}
-
-h1, h2 {
-  font-family: "Gilmer-Outline", BlinkMacSystemFont, -apple-system, "Roboto", "Droid Sans", "Segoe UI", "Helvetica Neue", Helvetica, Arial, sans-serif;
+.post-template .post-header {
+  margin: 0 0 1.5em;
 }
 
 /*# sourceMappingURL=spectre.css.map */
