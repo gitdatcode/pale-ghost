@@ -1,13 +1,11 @@
-<nav id="nav-bar" class="nav-bar">
-    <div class="logo">
-        <a href="{{@blog.url}}" title="{{@blog.title}}">
-          <img alt="{{@blog.title}}" src="{{@blog.logo}}" />
-        </a>
-    </div>
-    <div id="site-nav" class='site-nav'>
-      <a href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+<header class="site-header">
+  <a id="logo" href="{{@blog.url}}" title="{{@blog.title}}">
+    <img alt="{{@blog.title}}" src="{{@blog.logo}}" />
+  </a>
+  <nav class="site-nav">
+    <a id="menu-icon" href="javascript:void(0);" class="icon" onclick="toggleMenu()">
         <i class="fa fa-bars"></i>
       </a>
-      {{navigation}}
-    </div>
-</nav>
+    {{navigation}}
+  </nav>
+</header>

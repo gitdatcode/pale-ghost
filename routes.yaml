@@ -2,6 +2,8 @@ routes:
 /:
   data: page.home
   template: home
+/sign-up/:
+  template: sign-up
 collections:
   /blog/:
     permalink: /{slug}/
