@@ -1,32 +1,33 @@
 <footer class="site-footer">
-<div class="wrapper">
-    <div class="footer-content">
-        {{#if @labs.subscribers}}
-            <section class="footer-subscribe">
-                <h4>Subscribe to {{@blog.title}}</h4>
-                <p>Get the latest posts delivered right to your inbox</p>
+    <div class="wrapper">
+        <div class="footer-content">
+            {{#if @labs.subscribers}}
+                <section class="footer-subscribe">
+                    <h4>Subscribe to {{@blog.title}}</h4>
+                    <p>Get the latest posts delivered right to your inbox</p>
 
-                {{subscribe_form placeholder="youremail@example.com"}}
-            </section>
-        {{/if}}
-        <section class="footer-details">
-            <a href="{{@blog.url}}" title="{{@blog.title}}">{{@blog.title}}</a> &copy; {{date format="YYYY"}}
-        <nav class="footer-social">
-            <ul>
+                    {{subscribe_form placeholder="youremail@example.com"}}
+                </section>
+            {{/if}}
+            <div class="footer-details">
+                <a href="{{@blog.url}}" title="{{@blog.title}}">{{@blog.title}}</a> &copy; {{date format="YYYY"}}
+                <nav class="footer-social">
                 {{#if @blog.facebook}}
-                    <li><a href="{{facebook_url @blog.facebook}}" rel="noopener" target="_blank"><i class="fab fa-facebook"></i></a></li>
+                    <a href="{{facebook_url @blog.facebook}}" rel="noopener" target="_blank"><i class="fab fa-facebook"></i></a>
                 {{/if}}
                 {{#if @blog.twitter}}
-                    <li><a href="{{twitter_url @blog.twitter}}" rel="noopener" target="_blank"><i class="fab fa-twitter"></i></a></li>
+                    <a href="{{twitter_url @blog.twitter}}" rel="noopener" target="_blank"><i class="fab fa-twitter"></i></a>
                 {{/if}}
-            </ul>
-        </nav>
-        </section>
-        <div class='footer-credits'>
-            <section class="footer-powerby">
-                Published with <a href="https://ghost.org" title="Ghost">Ghost</a></br />
-                Theme built with <a href="https://github.com/nahuelsanchez/pale-ghost" title="Pale Ghost">Pale Ghost</a> by <a href="http://www.nahuelsanchez.com/" title="Nahuel Sanchez">Nahuel Sanchez</a>
-            </section>
+                    <a href="http://github.com/gitdatcode" rel="noopener" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="http://instagram.com/designdatcode" rel="noopener" target="_blank"><i class="fab fa-instagram"></i></a>
+                </nav>
+                <a href="/DatCodeCommunityCodeofConduct.pdf" target="_blank">CODE OF CONDUCT</a>
+            </div>
+            <div class='footer-credits'>
+                <section class="footer-powerby">
+                    Published with <a href="https://ghost.org" title="Ghost">Ghost</a></br />
+                </section>
+            </div>
         </div>
-</div>
+    </div>
 </footer>

@@ -1,20 +1,22 @@
-<article class="post-single {{post_class}}{{#if feature_image}} with-feature-image{{/if}}">
-    <header class="post-header">
-        {{> post/title}}
+<main class="post-single">
+    <article class="post-single {{post_class}}{{#if feature_image}} with-feature-image{{/if}}">
+        <header class="post-header">
+            {{> post/title}}
 
-        {{> post/feature-image}}
-        <div class="post-details">        
-        {{> post/date}}
-        {{> post/reading-time}}
-        </div>
-    </header>
+            {{> post/feature-image}}
+            <div class="post-details">        
+            {{> post/date}}
+            {{> post/reading-time}}
+            </div>
+        </header>
 
-    <section>
-            {{> post/content}}
-    </section>
+        <section>
+                {{> post/content}}
+        </section>
 
-    <footer class='post-footer'>
-        {{> post/authors}}
-        {{> post/tags-all}}
-    </footer>
-</article>
+        <footer class='post-footer'>
+            {{> post/authors}}
+            {{> post/tags-all}}
+        </footer>
+    </article>
+</main>

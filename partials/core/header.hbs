@@ -1,11 +1,28 @@
 <header class="site-header">
-  <a id="logo" href="{{@blog.url}}" title="{{@blog.title}}">
-    <img alt="{{@blog.title}}" src="{{@blog.logo}}" />
-  </a>
-  <nav class="site-nav">
-    <a id="menu-icon" href="javascript:void(0);" class="icon" onclick="toggleMenu()">
-        <i class="fa fa-bars"></i>
+	  <a id="logo" href="{{@blog.url}}" title="{{@blog.title}}">
+	    <img alt="{{@blog.title}}" src="{{@blog.logo}}" />
+	  </a>
+  <nav id="site-nav" class="site-nav">
+    <a href="/">Home</a>
+    <a href="/blog">Blog</a>
+    <a href="https://resources.datcode.io">Resources</a>
+    {{^is 'home'}}
+			<a class="nav-sign-up" href="/sign-up">Sign Up!</a>
+		{{/is}}
+  </nav>
+  <nav id="site-nav-mobile" class="site-nav-mobile">
+  	<a id="menu-icon" href="javascript:void(0);" class="icon" onclick="toggleMenu()">
+        <i class="fas fa-bars"></i>
       </a>
-    {{navigation}}
+  	<div id="site-nav-links" class="site-nav-links not-visible">
+  		<ul>
+		    <li><a href="/">Home</a></li>
+		    <li><a href="/blog">Blog</a></li>
+		    <li><a href="https://resources.datcode.io">Resources</a></li>
+		    {{^is 'home'}}
+					<li><a class="nav-sign-up" href="/sign-up">Sign Up!</a></li>
+				{{/is}}
+			</ul>
+		</div>
   </nav>
 </header>

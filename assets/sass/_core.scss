@@ -1,12 +1,23 @@
+body {
+	font-size: 1.5rem;
+}
+
+
 .title {
 	font-weight: 700;
 }
+
+h1 {
+	font-family: "Gilmer-Outline";
+}
+
 
 .site-header {
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
+	height: 70px;
 	z-index: 100;
 	background-color: map-get($s5-map--color, dc-black);
 
@@ -22,96 +33,110 @@
 
 	.site-nav{
 		float: right;
-		padding: 0 20px;
+		padding: 15px 20px;
 		display: flex;
-		align-items: center;
+		align-content: center;
+		justify-content: center;
 
-		#menu-icon{
+		.icon {
 			display: none;
 			width: 40px;
 			height: 40px;
 		}
 
-		ul {
-			list-style: none;
-			margin: 10px 0;
-
-			li {
-				display: inline-block;
-				float: left;
-				padding: 10px;
-			}
-		}
-
 		a {
+			float: left;
+		  display: block;
+		  color: #f2f2f2;
+		  text-align: center;
+		  padding: 14px 16px;
+		  text-decoration: none;
+		  font-size: 17px;
+
 			text-transform: uppercase;
 			color: map-get($s5-map--color, dc-white);
 			text-decoration: none;
 			font-weight: 700;
+			vertical-align: middle;
 		}
 
 		.nav-sign-up {
 			background-color: map-get($s5-map--color, dc-purple);
 			border-radius: 3px;
 		}
+
+		@media screen and (max-width: 640px) {
+			display: none;
+		}
 	}
 
-	@media screen and (max-width: 640px) {
-		#menu-icon {
-			display: inline-block;
-		}
-
-		.site-nav ul, nav:active ul {
+	.site-nav-mobile {
+		@media screen and (min-width: 640px) {
 			display: none;
-			position: absolute;
-			padding: 20px;
-			background: map-get($s5-map--color, dc-black);
-			right: 20px;
-			top: 60px;
-			width: 50%;
 		}
 
-		.site-nav li {
-			text-align: center;
-			width: 100%;
-			padding: 10px 0;
-			margin: 0;
-		}
-
-		nav:hover ul {
+		.icon {
+			position: fixed;
+			top: 0;
+			right: 0;
 			display: block;
+			float: right;
+			padding: 20px;
+			z-index: 99;
+		}
+
+		background-color: map-get($s5-map--color, dc-black);
+
+		.site-nav-links {
+			z-index: -1;
+			display: relative;
+			float: right;
+			padding: 50px 0 0 50px;
+			background-color: map-get($s5-map--color, dc-black);
+		}
+
+		ul {
+			list-style-type: none;
+			padding: 0;
+			text-align: right;
+		}
+		a {
+			display: block;
+		  padding: 10px;
+		  text-decoration: none;
+
+			text-transform: uppercase;
+			color: map-get($s5-map--color, dc-white);
+			font-weight: 700;
 		}
 	}
 }
 
+.visible {
+	opacity: 1;
+}
 
-
-footer.site-footer {
-	background-color: map-get($s5-map--color, dc-purple);
+.not-visible {
+	opacity: 0;
 }
 
 
 .footer-content {
 	margin: 0 15px;
-	padding: 40px 15px;
+	padding: 40px 0;
 	min-height: 20vh;
-	color: map-get($s5-map--color, dc-black);
 
 	a {
 		text-decoration: none;
 	}
 
 	.footer-details, .footer-credits {
-		a { color: map-get($s5-map--color, dc-white); font-weight: bold; }
-	}
-
-	.footer-credits {
-		padding: 20px 0;
+		a { color: map-get($s5-map--color, dc-purple); font-weight: bold; }
 	}
 
 	.footer-nav {
 		text-transform: uppercase;
-		a { color: map-get($s5-map--color, dc-black); }
+		a { color: map-get($s5-map--color, dc-purple); }
 		ul {
 			list-style-type: none;
 			margin: 0;
@@ -127,10 +152,15 @@ footer.site-footer {
 		> * {
 			display: inline;
 			text-transform: uppercase;
+			padding: 0 10px 0 0;
 		}
 		> * > * {
 			list-style-type: none;
 		}
-		a { color: map-get($s5-map--color, dc-black); }
+		a { color: map-get($s5-map--color, dc-purple); }
+	}
+
+	@media screen and (max-width: 640px) {
+		display: relative;
 	}
 }

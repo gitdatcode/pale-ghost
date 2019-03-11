@@ -1,9 +1,7 @@
 routes:
-/:
-  data: page.home
-  template: home
-/sign-up/:
-  template: sign-up
+  /: home
+  /sign-up/: sign-up
+  /code-of-conduct: code-of-conduct
 collections:
   /blog/:
     permalink: /{slug}/
