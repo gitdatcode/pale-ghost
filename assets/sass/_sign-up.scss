@@ -1,5 +1,6 @@
 .sign-up-template {
 	padding: 80px 20px;
+	font-size: 1.6rem;
 	
 	.title {
 		font-size: 4em;
@@ -33,7 +34,7 @@
 		font-family: "Gilmer";
 	}
 
-	input[type="text"], input[type="email"], select {
+	.form-control {
 		height: 40px;
 		font-size: 1.15em;
 		width: 100%;
@@ -45,14 +46,12 @@
 		border-radius: 0.25em;
 	}
 
-	input:focus {
-		outline-offset: -2px;
+	.required {
+		border-color: map-get($s5-map--color, dc-red);
 	}
 
-	input[type='radio'] {
-		margin: 10px;
-		border-color: map-get($s5-map--color, dc=white);
-		background-color: rgba(225,225,225,0);
+	input:focus {
+		outline-offset: -2px;
 	}
 
 	input[type='submit'] {
@@ -73,3 +72,4 @@
 		padding: 10px;
 	}
 }
+

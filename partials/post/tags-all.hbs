@@ -1,3 +1,7 @@
-<div class="post-tags-all">
-    {{tags}}
-</div>
+{{#if tags}}
+	<div class="post-tags-all">
+	    {{#foreach tags}}
+	    	<a href="{{url}}" title="{{name}}" class="tag tag-{{id}} {{slug}}">{{name}}</a>
+	    {{/foreach}}
+	</div>
+{{/if}}

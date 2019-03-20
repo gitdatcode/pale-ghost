@@ -1,11 +1,11 @@
 @font-face {
   font-family: 'Gilmer-Outline';
-  src: url( '#{$font_path}/glimer-outline/gilmer-outline.eot');
-  src: url('#{$font_path}/glimer-outline/gilmer-outline.eot?#iefix') format('embedded-opentype'),
-    url('#{$font_path}/glimer-outline/gilmer-outline.woff2') format('woff2'),
-    url('#{$font_path}/glimer-outline/gilmer-outline.woff') format('woff'),
-    url('#{$font_path}/glimer-outline/gilmer-outline.ttf') format('truetype'),
-    url('#{$font_path}/glimer-outline/gilmer-outline.svg') format('svg');
+  src: url( '#{$font_path}/gilmer-outline/gilmer-outline.eot');
+  src: url('#{$font_path}/gilmer-outline/gilmer-outline.eot?#iefix') format('embedded-opentype'),
+    url('#{$font_path}/gilmer-outline/gilmer-outline.woff2') format('woff2'),
+    url('#{$font_path}/gilmer-outline/gilmer-outline.woff') format('woff'),
+    url('#{$font_path}/gilmer-outline/gilmer-outline.ttf') format('truetype'),
+    url('#{$font_path}/gilmer-outline/gilmer-outline.svg') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -13,12 +13,12 @@
 // Light
 @font-face {
   font-family: 'Gilmer';
-  src: url('#{$font_path}/glimer-light/gilmer-light.eot');
-  src: url('#{$font_path}/glimer-light/gilmer-light.eot?#iefix') format('embedded-opentype'),
-    url('#{$font_path}/glimer-light/gilmer-light.woff2') format('woff2'),
-    url('#{$font_path}/glimer-light/gilmer-light.woff') format('woff'),
-    url('#{$font_path}/glimer-light/gilmer-light.ttf') format('truetype'),
-    url('#{$font_path}/glimer-light/gilmer-light.svg#youworkforthem') format('svg');
+  src: url('#{$font_path}/gilmer-light/gilmer-light.eot');
+  src: url('#{$font_path}/gilmer-light/gilmer-light.eot?#iefix') format('embedded-opentype'),
+    url('#{$font_path}/gilmer-light/gilmer-light.woff2') format('woff2'),
+    url('#{$font_path}/gilmer-light/gilmer-light.woff') format('woff'),
+    url('#{$font_path}/gilmer-light/gilmer-light.ttf') format('truetype'),
+    url('#{$font_path}/gilmer-light/gilmer-light.svg#youworkforthem') format('svg');
   font-weight: 300;
   font-style: normal;
 }
@@ -26,12 +26,12 @@
 // Regular
 @font-face {
   font-family: 'Gilmer';
-  src: url('#{$font_path}/glimer-regular/gilmer-regular.eot');
-  src: url('#{$font_path}/glimer-regular/gilmer-regular.eot?#iefix') format('embedded-opentype'),
-    url('#{$font_path}/glimer-regular/gilmer-regular.woff2') format('woff2'),
-    url('#{$font_path}/glimer-regular/gilmer-regular.woff') format('woff'),
-    url('#{$font_path}/glimer-regular/gilmer-regular.ttf') format('truetype'),
-    url('#{$font_path}/glimer-regular/gilmer-regular.svg') format('svg');
+  src: url('#{$font_path}/gilmer-regular/gilmer-regular.eot');
+  src: url('#{$font_path}/gilmer-regular/gilmer-regular.eot?#iefix') format('embedded-opentype'),
+    url('#{$font_path}/gilmer-regular/gilmer-regular.woff2') format('woff2'),
+    url('#{$font_path}/gilmer-regular/gilmer-regular.woff') format('woff'),
+    url('#{$font_path}/gilmer-regular/gilmer-regular.ttf') format('truetype'),
+    url('#{$font_path}/gilmer-regular/gilmer-regular.svg') format('svg');
   font-weight: 400;
   font-style: normal;
 }
@@ -39,12 +39,12 @@
 // Medium
 @font-face {
   font-family: 'Gilmer';
-  src: url('#{$font_path}/glimer-medium/gilmer-medium.eot');
-  src: url('#{$font_path}/glimer-medium/gilmer-medium.eot?#iefix') format('embedded-opentype'),
-    url('#{$font_path}/glimer-medium/gilmer-medium.woff2') format('woff2'),
-    url('#{$font_path}/glimer-medium/gilmer-medium.woff') format('woff'),
-    url('#{$font_path}/glimer-medium/gilmer-medium.ttf') format('truetype'),
-    url('#{$font_path}/glimer-medium/gilmer-medium.svg') format('svg');
+  src: url('#{$font_path}/gilmer-medium/gilmer-medium.eot');
+  src: url('#{$font_path}/gilmer-medium/gilmer-medium.eot?#iefix') format('embedded-opentype'),
+    url('#{$font_path}/gilmer-medium/gilmer-medium.woff2') format('woff2'),
+    url('#{$font_path}/gilmer-medium/gilmer-medium.woff') format('woff'),
+    url('#{$font_path}/gilmer-medium/gilmer-medium.ttf') format('truetype'),
+    url('#{$font_path}/gilmer-medium/gilmer-medium.svg') format('svg');
   font-weight: 500;
   font-style: normal;
 }
@@ -65,12 +65,12 @@
 // Heavy
 @font-face {
   font-family: 'Gilmer';
-  src: url('#{$font_path}/glimer-heavy/gilmer-heavy.eot');
-  src: url('#{$font_path}/glimer-heavy/gilmer-heavy.eot?#iefix') format('embedded-opentype'),
-    url('#{$font_path}/glimer-heavy/gilmer-heavy.woff2') format('woff2'),
-    url('#{$font_path}/glimer-heavy/gilmer-heavy.woff') format('woff'),
-    url('#{$font_path}/glimer-heavy/gilmer-heavy.ttf') format('truetype'),
-    url('#{$font_path}/glimer-heavy/gilmer-heavy.svg') format('svg');
+  src: url('#{$font_path}/gilmer-heavy/gilmer-heavy.eot');
+  src: url('#{$font_path}/gilmer-heavy/gilmer-heavy.eot?#iefix') format('embedded-opentype'),
+    url('#{$font_path}/gilmer-heavy/gilmer-heavy.woff2') format('woff2'),
+    url('#{$font_path}/gilmer-heavy/gilmer-heavy.woff') format('woff'),
+    url('#{$font_path}/gilmer-heavy/gilmer-heavy.ttf') format('truetype'),
+    url('#{$font_path}/gilmer-heavy/gilmer-heavy.svg') format('svg');
   font-weight: 800;
   font-style: normal;
 }

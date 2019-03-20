@@ -11,15 +11,22 @@ $(document).ready( () => {
     }
   };
 
-  let subscribe_button = document.getElementById("mc-embedded-subscribe");
+  let subscribe_button = $("#mc-embedded-subscribe"),
+  fname = $("#mce-FNAME"),
+  lname = $("#mce-LNAME"),
+  email = $("#mce-EMAIL"),
+  social = $('#mce-SOCIAL'),
+  how = $('#mce-MMERGE5'),
+  required = [fname, lname, email, social, how];
 
-  subscribe_button.addEventListener( 'click', () => {
+  subscribe_button.click ( () => {
     //get the dobot values from the form
-    dobot.event.first_name = document.getElementById("mce-FNAME").value;
-    dobot.event.last_name = document.getElementById("mce-LNAME").value;
-    dobot.event.email = document.getElementById("mce-EMAIL").value;
-    dobot.event.social = document.getElementById('mce-SOCIAL').value;
-    //POST to the dobot app
+    dobot.event.first_name = fname.value;
+    dobot.event.last_name = lname.value;
+    dobot.event.email = email.value;
+    dobot.event.social = social.value;
+    dobot.event.how = how.value;
+
     sa.post('http://45.55.90.231:8921')
       .set('Content-Type', 'application/json')
       .send(JSON.stringify(dobot))
