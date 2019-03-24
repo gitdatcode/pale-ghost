@@ -1,6 +1,5 @@
 (function(){function r(e,n,t){function o(i,f){if(!n[i]){if(!e[i]){var c="function"==typeof require&&require;if(!f&&c)return c(i,!0);if(u)return u(i,!0);var a=new Error("Cannot find module '"+i+"'");throw a.code="MODULE_NOT_FOUND",a}var p=n[i]={exports:{}};e[i][0].call(p.exports,function(r){var n=e[i][1][r];return o(n||r)},p,p.exports,r,e,n,t)}return n[i].exports}for(var u="function"==typeof require&&require,i=0;i<t.length;i++)o(t[i]);return o}return r})()({1:[function(require,module,exports){
 let sa = require("superagent");
-let vars = require("./vars");
 
 $(document).ready( () => {
   
@@ -17,27 +16,56 @@ $(document).ready( () => {
   email = $("#mce-EMAIL"),
   social = $('#mce-SOCIAL'),
   how = $('#mce-MMERGE5'),
+  message = $('#message'),
   required = [fname, lname, email, social, how];
 
   subscribe_button.click ( () => {
     //get the dobot values from the form
-    dobot.event.first_name = fname.value;
-    dobot.event.last_name = lname.value;
-    dobot.event.email = email.value;
-    dobot.event.social = social.value;
-    dobot.event.how = how.value;
+    dobot.event.first_name = fname.val();
+    dobot.event.last_name = lname.val();
+    dobot.event.email = email.val();
+    dobot.event.social = social.val();
+    dobot.event.how = how.val();
 
-    sa.post('http://45.55.90.231:8921')
+    var can_submit = true;
+
+    for(var i = 0, l = required.length; i < l; i++){
+      var field = required[i];
+
+      if(!field.val()){
+        can_submit = false;
+        // do something to the field here
+        field.addClass(' required');
+      }
+    }
+      //POST to the dobot app
+    if(can_submit) {
+      for(var i = 0, l = required.length; i < l; i++){
+        field.removeClass('required');
+      }
+
+      sa.post('http://45.55.90.231:8921')
       .set('Content-Type', 'application/json')
       .send(JSON.stringify(dobot))
       .end( (err, res) => {
-        console.log('error', err);
         console.log(res);
-    });
+        if (err) {
+        console.log('error from dobot: ', err);
+        }
+        else {
+          message.text("Great! We got it. You'll hear from us soon.");
+          message.removeClass("red");
+          message.addClass(" green");
+        }
+      });
+    }
+    else {
+      message.text("Missing some fields!");
+      message.addClass(' red');
+    }
   });
 });
-
-},{"./vars":9,"superagent":4}],2:[function(require,module,exports){
+},{"superagent":4}],2:[function(require,module,exports){
 
 /**
  * Expose `Emitter`.
@@ -208,17 +236,17 @@ function Agent() {
 }
 
 ["use", "on", "once", "set", "query", "type", "accept", "auth", "withCredentials", "sortQuery", "retry", "ok", "redirects",
- "timeout", "buffer", "serialize", "parse", "ca", "key", "pfx", "cert"].forEach(function(fn) {
+ "timeout", "buffer", "serialize", "parse", "ca", "key", "pfx", "cert"].forEach(fn => {
   /** Default setting for all requests from this agent */
-  Agent.prototype[fn] = function(/*varargs*/) {
-    this._defaults.push({fn:fn, arguments:arguments});
+  Agent.prototype[fn] = function(...args) {
+    this._defaults.push({fn, args});
     return this;
   }
 });
 
 Agent.prototype._setDefaults = function(req) {
-    this._defaults.forEach(function(def) {
-      req[def.fn].apply(req, def.arguments);
+    this._defaults.forEach(def => {
+      req[def.fn].apply(req, def.args);
     });
 };
 
@@ -229,7 +257,7 @@ module.exports = Agent;
  * Root reference for iframes.
  */
 
-var root;
+let root;
 if (typeof window !== 'undefined') { // Browser window
   root = window;
 } else if (typeof self !== 'undefined') { // Web Worker
@@ -239,11 +267,11 @@ if (typeof window !== 'undefined') { // Browser window
   root = this;
 }
 
-var Emitter = require('component-emitter');
-var RequestBase = require('./request-base');
-var isObject = require('./is-object');
-var ResponseBase = require('./response-base');
-var Agent = require('./agent-base');
+const Emitter = require('component-emitter');
+const RequestBase = require('./request-base');
+const isObject = require('./is-object');
+const ResponseBase = require('./response-base');
+const Agent = require('./agent-base');
 
 /**
  * Noop.
@@ -255,7 +283,7 @@ function noop(){};
  * Expose `request`.
  */
 
-var request = exports = module.exports = function(method, url) {
+const request = exports = module.exports = function(method, url) {
   // callback
   if ('function' == typeof url) {
     return new exports.Request('GET', method).end(url);
@@ -267,7 +295,7 @@ var request = exports = module.exports = function(method, url) {
   }
 
   return new exports.Request(method, url);
-}
+};
 
 exports.Request = Request;
 
@@ -275,7 +303,7 @@ exports.Request = Request;
  * Determine XHR.
  */
 
-request.getXHR = function () {
+request.getXHR = () => {
   if (root.XMLHttpRequest
       && (!root.location || 'file:' != root.location.protocol
           || !root.ActiveXObject)) {
@@ -297,9 +325,9 @@ request.getXHR = function () {
  * @api private
  */
 
-var trim = ''.trim
-  ? function(s) { return s.trim(); }
-  : function(s) { return s.replace(/(^\s*|\s*$)/g, ''); };
+const trim = ''.trim
+  ? s => s.trim()
+  : s => s.replace(/(^\s*|\s*$)/g, '');
 
 /**
  * Serialize the given `obj`.
@@ -311,8 +339,8 @@ var trim = ''.trim
 
 function serialize(obj) {
   if (!isObject(obj)) return obj;
-  var pairs = [];
-  for (var key in obj) {
+  const pairs = [];
+  for (const key in obj) {
     pushEncodedKeyValuePair(pairs, key, obj[key]);
   }
   return pairs.join('&');
@@ -330,12 +358,12 @@ function serialize(obj) {
 function pushEncodedKeyValuePair(pairs, key, val) {
   if (val != null) {
     if (Array.isArray(val)) {
-      val.forEach(function(v) {
+      val.forEach(v => {
         pushEncodedKeyValuePair(pairs, key, v);
       });
     } else if (isObject(val)) {
-      for(var subkey in val) {
-        pushEncodedKeyValuePair(pairs, key + '[' + subkey + ']', val[subkey]);
+      for(const subkey in val) {
+        pushEncodedKeyValuePair(pairs, `${key}[${subkey}]`, val[subkey]);
       }
     } else {
       pairs.push(encodeURIComponent(key)
@@ -361,12 +389,12 @@ request.serializeObject = serialize;
   */
 
 function parseString(str) {
-  var obj = {};
-  var pairs = str.split('&');
-  var pair;
-  var pos;
+  const obj = {};
+  const pairs = str.split('&');
+  let pair;
+  let pos;
 
-  for (var i = 0, len = pairs.length; i < len; ++i) {
+  for (let i = 0, len = pairs.length; i < len; ++i) {
     pair = pairs[i];
     pos = pair.indexOf('=');
     if (pos == -1) {
@@ -440,14 +468,14 @@ request.parse = {
  */
 
 function parseHeader(str) {
-  var lines = str.split(/\r?\n/);
-  var fields = {};
-  var index;
-  var line;
-  var field;
-  var val;
+  const lines = str.split(/\r?\n/);
+  const fields = {};
+  let index;
+  let line;
+  let field;
+  let val;
 
-  for (var i = 0, len = lines.length; i < len; ++i) {
+  for (let i = 0, len = lines.length; i < len; ++i) {
     line = lines[i];
     index = line.indexOf(':');
     if (index === -1) { // could be empty line, just skip it
@@ -529,7 +557,7 @@ function Response(req) {
      ? this.xhr.responseText
      : null;
   this.statusText = this.req.xhr.statusText;
-  var status = this.xhr.status;
+  let status = this.xhr.status;
   // handle IE9 bug: http://stackoverflow.com/questions/10046972/msie-returns-status-code-of-1223-for-ajax-request
   if (status === 1223) {
     status = 204;
@@ -565,7 +593,7 @@ ResponseBase(Response.prototype);
  */
 
 Response.prototype._parseBody = function(str) {
-  var parse = request.parse[this.type];
+  let parse = request.parse[this.type];
   if (this.req._parser) {
     return this.req._parser(this, str);
   }
@@ -585,12 +613,12 @@ Response.prototype._parseBody = function(str) {
  */
 
 Response.prototype.toError = function(){
-  var req = this.req;
-  var method = req.method;
-  var url = req.url;
+  const req = this.req;
+  const method = req.method;
+  const url = req.url;
 
-  var msg = 'cannot ' + method + ' ' + url + ' (' + this.status + ')';
-  var err = new Error(msg);
+  const msg = `cannot ${method} ${url} (${this.status})`;
+  const err = new Error(msg);
   err.status = this.status;
   err.method = method;
   err.url = url;
@@ -613,15 +641,15 @@ request.Response = Response;
  */
 
 function Request(method, url) {
-  var self = this;
+  const self = this;
   this._query = this._query || [];
   this.method = method;
   this.url = url;
   this.header = {}; // preserves header name case
   this._header = {}; // coerces header names to lowercase
-  this.on('end', function(){
-    var err = null;
-    var res = null;
+  this.on('end', () => {
+    let err = null;
+    let res = null;
 
     try {
       res = new Response(self);
@@ -646,7 +674,7 @@ function Request(method, url) {
 
     self.emit('response', res);
 
-    var new_err;
+    let new_err;
     try {
       if (!self._isResponseOK(res)) {
         new_err = new Error(res.statusText || 'Unsuccessful HTTP response');
@@ -748,7 +776,7 @@ Request.prototype.auth = function(user, pass, options){
     };
   }
 
-  var encoder = function(string) {
+  const encoder = string => {
     if ('function' === typeof btoa) {
       return btoa(string);
     }
@@ -827,7 +855,7 @@ Request.prototype.callback = function(err, res){
     return this._retry();
   }
 
-  var fn = this._callback;
+  const fn = this._callback;
   this.clearTimeout();
 
   if (err) {
@@ -845,7 +873,7 @@ Request.prototype.callback = function(err, res){
  */
 
 Request.prototype.crossDomainError = function(){
-  var err = new Error('Request has been terminated\nPossible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.');
+  const err = new Error('Request has been terminated\nPossible causes: the network is offline, Origin is not allowed by Access-Control-Allow-Origin, the page is being unloaded, etc.');
   err.crossDomain = true;
 
   err.status = this.status;
@@ -862,7 +890,7 @@ Request.prototype.buffer = Request.prototype.ca = Request.prototype.agent = func
 };
 
 // This throws, because it can't send/receive data as expected
-Request.prototype.pipe = Request.prototype.write = function(){
+Request.prototype.pipe = Request.prototype.write = () => {
   throw Error("Streaming is not supported in browser version of superagent");
 };
 
@@ -900,19 +928,21 @@ Request.prototype.end = function(fn){
   // querystring
   this._finalizeQueryString();
 
-  return this._end();
+  this._end();
 };
 
 Request.prototype._end = function() {
-  var self = this;
-  var xhr = (this.xhr = request.getXHR());
-  var data = this._formData || this._data;
+  if (this._aborted) return this.callback(Error("The request has been aborted even before .end() was called"));
+
+  const self = this;
+  const xhr = (this.xhr = request.getXHR());
+  let data = this._formData || this._data;
 
   this._setTimeouts();
 
   // state change
-  xhr.onreadystatechange = function(){
-    var readyState = xhr.readyState;
+  xhr.onreadystatechange = () => {
+    const readyState = xhr.readyState;
     if (readyState >= 2 && self._responseTimeoutTimer) {
       clearTimeout(self._responseTimeoutTimer);
     }
@@ -922,7 +952,7 @@ Request.prototype._end = function() {
 
     // In IE9, reads to any property (e.g. status) off of an aborted XHR will
     // result in the error "Could not complete the operation due to error c00c023f"
-    var status;
+    let status;
     try { status = xhr.status } catch(e) { status = 0; }
 
     if (!status) {
@@ -933,7 +963,7 @@ Request.prototype._end = function() {
   };
 
   // progress
-  var handleProgress = function(direction, e) {
+  const handleProgress = (direction, e) => {
     if (e.total > 0) {
       e.percent = e.loaded / e.total * 100;
     }
@@ -971,8 +1001,8 @@ Request.prototype._end = function() {
   // body
   if (!this._formData && 'GET' != this.method && 'HEAD' != this.method && 'string' != typeof data && !this._isHost(data)) {
     // serialize stuff
-    var contentType = this._header['content-type'];
-    var serialize = this._serializer || request.serialize[contentType ? contentType.split(';')[0] : ''];
+    const contentType = this._header['content-type'];
+    let serialize = this._serializer || request.serialize[contentType ? contentType.split(';')[0] : ''];
     if (!serialize && isJSON(contentType)) {
       serialize = request.serialize['application/json'];
     }
@@ -980,7 +1010,7 @@ Request.prototype._end = function() {
   }
 
   // set header fields
-  for (var field in this.header) {
+  for (const field in this.header) {
     if (null == this.header[field]) continue;
 
     if (this.header.hasOwnProperty(field))
@@ -997,16 +1027,13 @@ Request.prototype._end = function() {
   // IE11 xhr.send(undefined) sends 'undefined' string as POST payload (instead of nothing)
   // We need null here if data is undefined
   xhr.send(typeof data !== 'undefined' ? data : null);
-  return this;
 };
 
-request.agent = function() {
-  return new Agent();
-};
+request.agent = () => new Agent();
 
-["GET", "POST", "OPTIONS", "PATCH", "PUT", "DELETE"].forEach(function(method) {
+["GET", "POST", "OPTIONS", "PATCH", "PUT", "DELETE"].forEach(method => {
   Agent.prototype[method.toLowerCase()] = function(url, fn) {
-    var req = new request.Request(method, url);
+    const req = new request.Request(method, url);
     this._setDefaults(req);
     if (fn) {
       req.end(fn);
@@ -1027,8 +1054,8 @@ Agent.prototype.del = Agent.prototype['delete'];
  * @api public
  */
 
-request.get = function(url, data, fn) {
-  var req = request('GET', url);
+request.get = (url, data, fn) => {
+  const req = request('GET', url);
   if ('function' == typeof data) (fn = data), (data = null);
   if (data) req.query(data);
   if (fn) req.end(fn);
@@ -1045,8 +1072,8 @@ request.get = function(url, data, fn) {
  * @api public
  */
 
-request.head = function(url, data, fn) {
-  var req = request('HEAD', url);
+request.head = (url, data, fn) => {
+  const req = request('HEAD', url);
   if ('function' == typeof data) (fn = data), (data = null);
   if (data) req.query(data);
   if (fn) req.end(fn);
@@ -1063,8 +1090,8 @@ request.head = function(url, data, fn) {
  * @api public
  */
 
-request.options = function(url, data, fn) {
-  var req = request('OPTIONS', url);
+request.options = (url, data, fn) => {
+  const req = request('OPTIONS', url);
   if ('function' == typeof data) (fn = data), (data = null);
   if (data) req.send(data);
   if (fn) req.end(fn);
@@ -1082,7 +1109,7 @@ request.options = function(url, data, fn) {
  */
 
 function del(url, data, fn) {
-  var req = request('DELETE', url);
+  const req = request('DELETE', url);
   if ('function' == typeof data) (fn = data), (data = null);
   if (data) req.send(data);
   if (fn) req.end(fn);
@@ -1102,8 +1129,8 @@ request['delete'] = del;
  * @api public
  */
 
-request.patch = function(url, data, fn) {
-  var req = request('PATCH', url);
+request.patch = (url, data, fn) => {
+  const req = request('PATCH', url);
   if ('function' == typeof data) (fn = data), (data = null);
   if (data) req.send(data);
   if (fn) req.end(fn);
@@ -1120,8 +1147,8 @@ request.patch = function(url, data, fn) {
  * @api public
  */
 
-request.post = function(url, data, fn) {
-  var req = request('POST', url);
+request.post = (url, data, fn) => {
+  const req = request('POST', url);
   if ('function' == typeof data) (fn = data), (data = null);
   if (data) req.send(data);
   if (fn) req.end(fn);
@@ -1138,8 +1165,8 @@ request.post = function(url, data, fn) {
  * @api public
  */
 
-request.put = function(url, data, fn) {
-  var req = request('PUT', url);
+request.put = (url, data, fn) => {
+  const req = request('PUT', url);
   if ('function' == typeof data) (fn = data), (data = null);
   if (data) req.send(data);
   if (fn) req.end(fn);
@@ -1169,7 +1196,7 @@ module.exports = isObject;
 /**
  * Module of mixed-in functions shared between node and client code
  */
-var isObject = require('./is-object');
+const isObject = require('./is-object');
 
 /**
  * Expose `RequestBase`.
@@ -1196,7 +1223,7 @@ function RequestBase(obj) {
  */
 
 function mixin(obj) {
-  for (var key in RequestBase.prototype) {
+  for (const key in RequestBase.prototype) {
     obj[key] = RequestBase.prototype[key];
   }
   return obj;
@@ -1288,7 +1315,7 @@ RequestBase.prototype.timeout = function timeout(options){
     return this;
   }
 
-  for(var option in options) {
+  for(const option in options) {
     switch(option) {
       case 'deadline':
         this._timeout = options.deadline;
@@ -1324,7 +1351,7 @@ RequestBase.prototype.retry = function retry(count, fn){
   return this;
 };
 
-var ERROR_CODES = [
+const ERROR_CODES = [
   'ECONNRESET',
   'ETIMEDOUT',
   'EADDRINFO',
@@ -1345,7 +1372,7 @@ RequestBase.prototype._shouldRetry = function(err, res) {
   }
   if (this._retryCallback) {
     try {
-      var override = this._retryCallback(err, res);
+      const override = this._retryCallback(err, res);
       if (override === true) return true;
       if (override === false) return false;
       // undefined falls back to defaults
@@ -1396,12 +1423,21 @@ RequestBase.prototype._retry = function() {
 
 RequestBase.prototype.then = function then(resolve, reject) {
   if (!this._fullfilledPromise) {
-    var self = this;
+    const self = this;
     if (this._endCalled) {
       console.warn("Warning: superagent request was sent twice, because both .end() and .then() were called. Never call .end() if you use promises");
     }
-    this._fullfilledPromise = new Promise(function(innerResolve, innerReject) {
-      self.end(function(err, res) {
+    this._fullfilledPromise = new Promise((innerResolve, innerReject) => {
+      self.on('error', innerReject);
+      self.on('abort', () => {
+        const err = new Error('Aborted');
+        err.code = "ABORTED";
+        err.status = this.status;
+        err.method = this.method;
+        err.url = this.url;
+        innerReject(err);
+      });
+      self.end((err, res) => {
         if (err) innerReject(err);
         else innerResolve(res);
       });
@@ -1491,7 +1527,7 @@ RequestBase.prototype.getHeader = RequestBase.prototype.get;
 
 RequestBase.prototype.set = function(field, val){
   if (isObject(field)) {
-    for (var key in field) {
+    for (const key in field) {
       this.set(key, field[key]);
     }
     return this;
@@ -1545,18 +1581,18 @@ RequestBase.prototype.field = function(name, val) {
   }
 
   if (this._data) {
-    console.error(".field() can't be used if .send() is used. Please use only .send() or only .field() & .attach()");
+    throw new Error(".field() can't be used if .send() is used. Please use only .send() or only .field() & .attach()");
   }
 
   if (isObject(name)) {
-    for (var key in name) {
+    for (const key in name) {
       this.field(key, name[key]);
     }
     return this;
   }
 
   if (Array.isArray(val)) {
-    for (var i in val) {
+    for (const i in val) {
       this.field(name, val[i]);
     }
     return this;
@@ -1594,7 +1630,7 @@ RequestBase.prototype.abort = function(){
 RequestBase.prototype._auth = function(user, pass, options, base64Encoder) {
   switch (options.type) {
     case 'basic':
-      this.set('Authorization', 'Basic ' + base64Encoder(user + ':' + pass));
+      this.set('Authorization', `Basic ${base64Encoder(`${user}:${pass}`)}`);
       break;
 
     case 'auto':
@@ -1603,7 +1639,7 @@ RequestBase.prototype._auth = function(user, pass, options, base64Encoder) {
       break;
 
     case 'bearer': // usage would be .auth(accessToken, { type: 'bearer' })
-      this.set('Authorization', 'Bearer ' + user);
+      this.set('Authorization', `Bearer ${user}`);
       break;
   }
   return this;
@@ -1714,11 +1750,11 @@ RequestBase.prototype.toJSON = function() {
  */
 
 RequestBase.prototype.send = function(data){
-  var isObj = isObject(data);
-  var type = this._header['content-type'];
+  const isObj = isObject(data);
+  let type = this._header['content-type'];
 
   if (this._formData) {
-    console.error(".send() can't be used if .attach() or .field() is used. Please use only .send() or only .field() & .attach()");
+    throw new Error(".send() can't be used if .attach() or .field() is used. Please use only .send() or only .field() & .attach()");
   }
 
   if (isObj && !this._data) {
@@ -1733,7 +1769,7 @@ RequestBase.prototype.send = function(data){
 
   // merge
   if (isObj && isObject(this._data)) {
-    for (var key in data) {
+    for (const key in data) {
       this._data[key] = data[key];
     }
   } else if ('string' == typeof data) {
@@ -1742,7 +1778,7 @@ RequestBase.prototype.send = function(data){
     type = this._header['content-type'];
     if ('application/x-www-form-urlencoded' == type) {
       this._data = this._data
-        ? this._data + '&' + data
+        ? `${this._data}&${data}`
         : data;
     } else {
       this._data = (this._data || '') + data;
@@ -1800,16 +1836,16 @@ RequestBase.prototype.sortQuery = function(sort) {
  * @api private
  */
 RequestBase.prototype._finalizeQueryString = function(){
-  var query = this._query.join('&');
+  const query = this._query.join('&');
   if (query) {
     this.url += (this.url.indexOf('?') >= 0 ? '&' : '?') + query;
   }
   this._query.length = 0; // Makes the call idempotent
 
   if (this._sort) {
-    var index = this.url.indexOf('?');
+    const index = this.url.indexOf('?');
     if (index >= 0) {
-      var queryArr = this.url.substring(index + 1).split('&');
+      const queryArr = this.url.substring(index + 1).split('&');
       if ('function' === typeof this._sort) {
         queryArr.sort(this._sort);
       } else {
@@ -1821,7 +1857,7 @@ RequestBase.prototype._finalizeQueryString = function(){
 };
 
 // For backwards compat only
-RequestBase.prototype._appendQueryString = function() {console.trace("Unsupported");}
+RequestBase.prototype._appendQueryString = () => {console.trace("Unsupported");}
 
 /**
  * Invoke callback with timeout error.
@@ -1833,7 +1869,7 @@ RequestBase.prototype._timeoutError = function(reason, timeout, errno){
   if (this._aborted) {
     return;
   }
-  var err = new Error(reason + timeout + 'ms exceeded');
+  const err = new Error(`${reason + timeout}ms exceeded`);
   err.timeout = timeout;
   err.code = 'ECONNABORTED';
   err.errno = errno;
@@ -1843,17 +1879,17 @@ RequestBase.prototype._timeoutError = function(reason, timeout, errno){
 };
 
 RequestBase.prototype._setTimeouts = function() {
-  var self = this;
+  const self = this;
 
   // deadline
   if (this._timeout && !this._timer) {
-    this._timer = setTimeout(function(){
+    this._timer = setTimeout(() => {
       self._timeoutError('Timeout of ', self._timeout, 'ETIME');
     }, this._timeout);
   }
   // response timeout
   if (this._responseTimeout && !this._responseTimeoutTimer) {
-    this._responseTimeoutTimer = setTimeout(function(){
+    this._responseTimeoutTimer = setTimeout(() => {
       self._timeoutError('Response timeout of ', self._responseTimeout, 'ETIMEDOUT');
     }, this._responseTimeout);
   }
@@ -1866,7 +1902,7 @@ RequestBase.prototype._setTimeouts = function() {
  * Module dependencies.
  */
 
-var utils = require('./utils');
+const utils = require('./utils');
 
 /**
  * Expose `ResponseBase`.
@@ -1893,7 +1929,7 @@ function ResponseBase(obj) {
  */
 
 function mixin(obj) {
-  for (var key in ResponseBase.prototype) {
+  for (const key in ResponseBase.prototype) {
     obj[key] = ResponseBase.prototype[key];
   }
   return obj;
@@ -1928,12 +1964,12 @@ ResponseBase.prototype._setHeaderProperties = function(header){
     // TODO: make this a util
 
     // content-type
-    var ct = header['content-type'] || '';
+    const ct = header['content-type'] || '';
     this.type = utils.type(ct);
 
     // params
-    var params = utils.params(ct);
-    for (var key in params) this[key] = params[key];
+    const params = utils.params(ct);
+    for (const key in params) this[key] = params[key];
 
     this.links = {};
 
@@ -1969,7 +2005,7 @@ ResponseBase.prototype._setHeaderProperties = function(header){
  */
 
 ResponseBase.prototype._setStatusProperties = function(status){
-    var type = status / 100 | 0;
+    const type = status / 100 | 0;
 
     // status / class
     this.status = this.statusCode = status;
@@ -2008,9 +2044,7 @@ ResponseBase.prototype._setStatusProperties = function(status){
  * @api private
  */
 
-exports.type = function(str){
-  return str.split(/ *; */).shift();
-};
+exports.type = str => str.split(/ *; */).shift();
 
 /**
  * Return header field parameters.
@@ -2020,16 +2054,14 @@ exports.type = function(str){
  * @api private
  */
 
-exports.params = function(str){
-  return str.split(/ *; */).reduce(function(obj, str){
-    var parts = str.split(/ *= */);
-    var key = parts.shift();
-    var val = parts.shift();
+exports.params = str => str.split(/ *; */).reduce((obj, str) => {
+  const parts = str.split(/ *= */);
+  const key = parts.shift();
+  const val = parts.shift();
 
-    if (key && val) obj[key] = val;
-    return obj;
-  }, {});
-};
+  if (key && val) obj[key] = val;
+  return obj;
+}, {});
 
 /**
  * Parse Link header fields.
@@ -2039,15 +2071,13 @@ exports.params = function(str){
  * @api private
  */
 
-exports.parseLinks = function(str){
-  return str.split(/ *, */).reduce(function(obj, str){
-    var parts = str.split(/ *; */);
-    var url = parts[0].slice(1, -1);
-    var rel = parts[1].split(/ *= */)[1].slice(1, -1);
-    obj[rel] = url;
-    return obj;
-  }, {});
-};
+exports.parseLinks = str => str.split(/ *, */).reduce((obj, str) => {
+  const parts = str.split(/ *; */);
+  const url = parts[0].slice(1, -1);
+  const rel = parts[1].split(/ *= */)[1].slice(1, -1);
+  obj[rel] = url;
+  return obj;
+}, {});
 
 /**
  * Strip content related fields from `header`.
@@ -2057,7 +2087,7 @@ exports.parseLinks = function(str){
  * @api private
  */
 
-exports.cleanHeader = function(header, changesOrigin){
+exports.cleanHeader = (header, changesOrigin) => {
   delete header['content-type'];
   delete header['content-length'];
   delete header['transfer-encoding'];
@@ -2070,10 +2100,4 @@ exports.cleanHeader = function(header, changesOrigin){
   return header;
 };
 
-},{}],9:[function(require,module,exports){
-const vars = {
-  "SLACK_API_TOKEN": "exqoE99l8QOZ6T1wq6uEaprO"
-}
-
-module.exports = vars;
 },{}]},{},[1]);

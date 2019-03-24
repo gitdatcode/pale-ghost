@@ -39,7 +39,7 @@
 	"config": {
 		"posts_per_page": 5
 	},
-	"dependencies": {
-		"normalize.css": "^8.0.1"
+	"devDependencies": {
+		"superagent": "^4.1.0"
 	}
 }

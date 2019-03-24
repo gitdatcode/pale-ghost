@@ -661,4 +661,16 @@ h1 {
   padding: 10px;
 }
 
+#message {
+  padding: 10px;
+}
+
+.green {
+  color: #00FF8B;
+}
+
+.red {
+  color: #EF0053;
+}
+
 /*# sourceMappingURL=spectre.css.map */

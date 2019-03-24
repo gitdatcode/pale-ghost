@@ -73,3 +73,6 @@
 	}
 }
 
+#message { padding: 10px; }
+.green { color: map-get($s5-map--color, dc-green); }
+.red { color: map-get($s5-map--color, dc-red); }	
