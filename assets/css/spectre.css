@@ -673,4 +673,40 @@ h1 {
   color: #EF0053;
 }
 
+.about-template {
+  padding: 80px 20px;
+  font-size: 2.2rem;
+  line-height: 1.6em;
+}
+.about-template .title {
+  font-size: 4em;
+  text-align: center;
+  line-height: 1em;
+  text-transform: uppercase;
+  font-family: "Gilmer";
+  font-weight: 800;
+}
+.about-template .title span {
+  font-family: "Gilmer-Outline";
+}
+@media screen and (max-width: 640px) {
+  .about-template .title {
+    font-size: 2.5em;
+  }
+}
+.about-template b {
+  color: #9E00FF;
+}
+.about-template a {
+  color: #F4F4F4;
+  font-weight: 700;
+  word-break: break-word;
+  box-shadow: inset 0 -1px 0 #9E00FF;
+}
+@media screen and (max-width: 640px) {
+  .about-template {
+    font-size: 1.9rem;
+  }
+}
+
 /*# sourceMappingURL=spectre.css.map */

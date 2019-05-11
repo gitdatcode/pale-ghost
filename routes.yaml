@@ -2,6 +2,7 @@ routes:
   /: home
   /sign-up/: sign-up
   /code-of-conduct/: code-of-conduct
+  /about/: about
 collections:
   /blog/:
     permalink: /{slug}/
